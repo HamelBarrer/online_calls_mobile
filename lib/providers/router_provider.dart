@@ -6,7 +6,7 @@ import 'package:online_calls_mobile/screens/auth/login_auth_screen.dart';
 
 final goRouterProvider = StateProvider((ref) {
   return GoRouter(
-    initialLocation: '/',
+    initialLocation: '/login',
     routes: [
       GoRoute(
         path: '/',

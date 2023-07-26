@@ -1,0 +1,33 @@
+import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+class ElevatedButtonWidget extends HookConsumerWidget {
+  final VoidCallback onPressed;
+  final String nameButton;
+
+  const ElevatedButtonWidget({
+    super.key,
+    required this.onPressed,
+    required this.nameButton,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.purple,
+          padding: const EdgeInsets.symmetric(vertical: 15),
+        ),
+        child: Text(
+          nameButton,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}
