@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:online_calls_mobile/models/auth_model.dart';
-import 'package:online_calls_mobile/providers/router_provider.dart';
-import 'package:online_calls_mobile/providers/user_provider.dart';
 import 'package:online_calls_mobile/widgets/form/elevated_button_widget.dart';
 import 'package:online_calls_mobile/widgets/form/text_field_widget.dart';
 
-class LoginAuthScreen extends HookConsumerWidget {
-  const LoginAuthScreen({super.key});
+class SigninAuthScreen extends HookConsumerWidget {
+  const SigninAuthScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = ref.watch(goRouterProvider);
-
     final usernameController = TextEditingController();
     final passwordController = TextEditingController();
+    final passwordConfirmController = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(),
@@ -37,26 +34,17 @@ class LoginAuthScreen extends HookConsumerWidget {
             const SizedBox(
               height: 20,
             ),
-            ElevatedButtonWidget(
-              onPressed: () {
-                final auth = AuthModel(
-                  username: usernameController.text,
-                  password: passwordController.text,
-                );
-
-                ref.watch(saveUserProvider(auth));
-              },
-              nameButton: 'Login',
+            TextFieldWidget(
+              controller: passwordConfirmController,
+              hintText: 'Password confirm',
+              obscureText: true,
             ),
             const SizedBox(
               height: 20,
             ),
             ElevatedButtonWidget(
-              onPressed: () {
-                router.pushNamed('signin');
-              },
-              nameButton: 'Signin',
-              color: Colors.blueGrey.shade700,
+              onPressed: () {},
+              nameButton: 'Create account',
             ),
           ],
         ),

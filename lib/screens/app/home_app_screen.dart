@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:online_calls_mobile/providers/shared_preferences_provider.dart';
 import 'package:online_calls_mobile/providers/user_provider.dart';
 import 'package:online_calls_mobile/widgets/cards/click_card_widget.dart';
 
@@ -8,6 +9,7 @@ class HomeAppScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final listUsers = ref.watch(listUsersProvider);
+    ref.watch(cleanSharedPreferencesProvider);
 
     return Scaffold(
       appBar: AppBar(),

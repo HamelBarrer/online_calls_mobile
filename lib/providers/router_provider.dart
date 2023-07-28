@@ -3,17 +3,23 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:online_calls_mobile/providers/user_provider.dart';
 import 'package:online_calls_mobile/screens/app/home_app_screen.dart';
 import 'package:online_calls_mobile/screens/auth/login_auth_screen.dart';
+import 'package:online_calls_mobile/screens/auth/signin_auth_screen.dart';
 
 final goRouterProvider = StateProvider((ref) {
   return GoRouter(
     initialLocation: '/login',
     redirect: (context, state) async {
       final user = await ref.watch(currentUserProvider);
-      if (user == null) {
+
+      if (user != null) {
+        return null;
+      }
+
+      if (state.fullPath != '/login' && state.fullPath != '/signin') {
         return '/login';
       }
 
-      return '/';
+      return null;
     },
     routes: [
       GoRoute(
@@ -25,6 +31,11 @@ final goRouterProvider = StateProvider((ref) {
         path: '/login',
         name: 'login',
         builder: (context, state) => const LoginAuthScreen(),
+      ),
+      GoRoute(
+        path: '/signin',
+        name: 'signin',
+        builder: (context, state) => const SigninAuthScreen(),
       ),
     ],
   );
