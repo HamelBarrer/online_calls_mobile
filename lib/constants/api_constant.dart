@@ -3,4 +3,6 @@ class ApiConstant {
   static const _apiVersion = '$_apiBase/api/v1';
 
   static const apiAuth = '$_apiVersion/auth';
+
+  static const apiUsers = '$_apiVersion/users';
 }
