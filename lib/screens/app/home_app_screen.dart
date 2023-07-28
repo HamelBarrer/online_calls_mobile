@@ -33,6 +33,18 @@ class HomeAppScreen extends HookConsumerWidget {
           child: CircularProgressIndicator(),
         ),
       ),
+      bottomNavigationBar: NavigationBar(
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.supervised_user_circle_outlined),
+            label: 'Home',
+          ),
+        ],
+      ),
     );
   }
 }

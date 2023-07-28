@@ -19,7 +19,6 @@ class UserService {
 
       return users;
     } on DioException catch (e) {
-      print(e);
       throw e.response!.data;
     }
   }
