@@ -32,3 +32,16 @@ final listUsersProvider = FutureProvider((ref) async {
 
   return users;
 });
+
+final createUserProvider =
+    StateProvider.family<void, UserCreateModel>((ref, userAuth) async {
+  final authService = AuthService();
+
+  await authService.createUser(userAuth);
+
+  final auth = AuthModel(
+    username: userAuth.username,
+    password: userAuth.password,
+  );
+  ref.watch(saveUserProvider(auth));
+});

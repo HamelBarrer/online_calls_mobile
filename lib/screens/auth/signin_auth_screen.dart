@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:online_calls_mobile/models/auth_model.dart';
+import 'package:online_calls_mobile/providers/user_provider.dart';
 import 'package:online_calls_mobile/widgets/form/elevated_button_widget.dart';
 import 'package:online_calls_mobile/widgets/form/text_field_widget.dart';
 
@@ -43,7 +45,16 @@ class SigninAuthScreen extends HookConsumerWidget {
               height: 20,
             ),
             ElevatedButtonWidget(
-              onPressed: () {},
+              onPressed: () {
+                final user = UserCreateModel(
+                  username: usernameController.text,
+                  password: passwordController.text,
+                  passwordConfirm: passwordConfirmController.text,
+                );
+                ref.watch(
+                  createUserProvider(user),
+                );
+              },
               nameButton: 'Create account',
             ),
           ],

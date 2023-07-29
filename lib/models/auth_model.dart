@@ -15,6 +15,25 @@ class AuthModel {
   }
 }
 
+class UserCreateModel extends AuthModel {
+  final String passwordConfirm;
+
+  UserCreateModel({
+    required super.username,
+    required super.password,
+    required this.passwordConfirm,
+  });
+
+  @override
+  Map<String, dynamic> toJsom() {
+    return {
+      'username': username,
+      'password': password,
+      'password_confirm': passwordConfirm,
+    };
+  }
+}
+
 class UserAuth {
   final int userId;
   final String username;

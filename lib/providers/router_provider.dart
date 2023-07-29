@@ -12,7 +12,7 @@ final goRouterProvider = StateProvider((ref) {
       final user = await ref.watch(currentUserProvider);
 
       if (user != null) {
-        return null;
+        return '/';
       }
 
       if (state.fullPath != '/login' && state.fullPath != '/signin') {
