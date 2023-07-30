@@ -1,39 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:online_calls_mobile/providers/shared_preferences_provider.dart';
-import 'package:online_calls_mobile/providers/user_provider.dart';
-import 'package:online_calls_mobile/widgets/cards/click_card_widget.dart';
+import 'package:online_calls_mobile/screens/app/init_app_screen.dart';
+import 'package:online_calls_mobile/screens/app/profile_app_screen.dart';
 
 class HomeAppScreen extends HookConsumerWidget {
   const HomeAppScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final listUsers = ref.watch(listUsersProvider);
-    ref.watch(cleanSharedPreferencesProvider);
+    const indexScreen = 0;
+
+    List<Widget> widgets = [
+      const IniAppScreen(),
+      const ProfileAppScreen(),
+    ];
 
     return Scaffold(
       appBar: AppBar(),
-      body: listUsers.when(
-        data: (users) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: ListView.builder(
-              itemCount: users.length,
-              itemBuilder: (context, i) {
-                return ClickCardWidget(
-                  title: users[i].username,
-                  subTitle: 'Activo',
-                );
-              },
-            ),
-          );
-        },
-        error: (err, stack) => Center(
-          child: Text('Error: $err'),
-        ),
-        loading: () => const Center(
-          child: CircularProgressIndicator(),
-        ),
+      body: IndexedStack(
+        index: indexScreen,
+        children: widgets,
       ),
       bottomNavigationBar: NavigationBar(
         destinations: const [
